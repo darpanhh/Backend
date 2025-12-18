@@ -1,0 +1,575 @@
+Microsoft Windows [Version 10.0.26100.7462]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Dell>mongod --version
+db version v8.2.2
+Build Info: {
+    "version": "8.2.2",
+    "gitVersion": "594f839ceec1f4385be9a690131412d67b249a0a",
+    "modules": [],
+    "allocator": "tcmalloc-gperf",
+    "environment": {
+        "distmod": "windows"
+    }
+}
+
+C:\Users\Dell>mongosh
+Current Mongosh Log ID: 6943d830d2d702ba621e2620
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.10
+Using MongoDB:          8.2.2
+Using Mongosh:          2.5.10
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+
+To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+You can opt-out by running the disableTelemetry() command.
+
+------
+   The server generated these startup warnings when booting
+   2025-12-18T15:52:43.269+05:45: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> show dbs
+admin   40.00 KiB
+config  60.00 KiB
+local   40.00 KiB
+testDB   8.00 KiB
+test> help
+
+  Shell Help:
+
+    log                                        'log.info(<msg>)': Write a custom info/warn/error/fatal/debug message to the log file
+                                               'log.getPath()': Gets a path to the current log file
+
+    use                                        Set current database
+    show                                       'show databases'/'show dbs': Print a list of all available databases
+                                               'show collections'/'show tables': Print a list of all collections for current database
+                                               'show profile': Prints system.profile information
+                                               'show users': Print a list of all users for current database
+                                               'show roles': Print a list of all roles for current database
+                                               'show log <name>': Display log for current connection, if name is not set uses 'global'
+                                               'show logs': Print all logger names.
+    exit                                       Quit the MongoDB shell with exit/exit()/.exit
+    quit                                       Quit the MongoDB shell with quit/quit()
+    Mongo                                      Create a new connection and return the Mongo object. Usage: new Mongo(URI, options [optional])
+    connect                                    Create a new connection and return the Database object. Usage: connect(URI, username [optional], password [optional])
+    it                                         result of the last line evaluated; use to further iterate
+    version                                    Shell version
+    load                                       Loads and runs a JavaScript file into the current shell environment
+    enableTelemetry                            Enables collection of anonymous usage data to improve the mongosh CLI
+    disableTelemetry                           Disables collection of anonymous usage data to improve the mongosh CLI
+    passwordPrompt                             Prompts the user for a password
+    sleep                                      Sleep for the specified number of milliseconds
+    print                                      Prints the contents of an object to the output
+    printjson                                  Alias for print()
+    convertShardKeyToHashed                    Returns the hashed value for the input using the same hashing function as a hashed index.
+    cls                                        Clears the screen like console.clear()
+    isInteractive                              Returns whether the shell will enter or has entered interactive mode
+
+  For more information on usage: https://mongodb.com/docs/manual/reference/method
+test> show dbs
+admin    40.00 KiB
+config  108.00 KiB
+local    40.00 KiB
+testDB    8.00 KiB
+test> quit
+
+C:\Users\Dell>clear
+'clear' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\Dell>mongosh
+Current Mongosh Log ID: 6943d9258ae383e8ed1e2620
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.10
+Using MongoDB:          8.2.2
+Using Mongosh:          2.5.10
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-12-18T15:52:43.269+05:45: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> 1+2
+3
+test> "apnacollege".toUpperCase()
+APNACOLLEGE
+test> use testDB
+switched to db testDB
+testDB> show dbs
+admin    40.00 KiB
+config  108.00 KiB
+local    40.00 KiB
+testDB    8.00 KiB
+testDB>  C:\Program Files\MongoDB\Server\8.2\binC:\Program Files\MongoDB\SertestDB> use college
+switched to db college
+college> show dbs
+admin   40.00 KiB
+config  96.00 KiB
+local   40.00 KiB
+testDB   8.00 KiB
+college> db
+college
+college> quit
+
+C:\Users\Dell>mongosh
+Current Mongosh Log ID: 6943d9f9f75880cedc1e2620
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.10
+Using MongoDB:          8.2.2
+Using Mongosh:          2.5.10
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-12-18T15:52:43.269+05:45: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> db
+test
+test> show dbs
+admin   40.00 KiB
+config  96.00 KiB
+local   40.00 KiB
+testDB   8.00 KiB
+test> use college
+switched to db college
+college> show collections
+
+college> db.student.insertOne({name:"adam",age:19,marks:88})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6943dca2f75880cedc1e2621')
+}
+college> db.student.find()
+[
+  {
+    _id: ObjectId('6943dca2f75880cedc1e2621'),
+    name: 'adam',
+    age: 19,
+    marks: 88
+  }
+]
+college> db.student.insertOne({name:"bob",city:"Delhi",marks:75})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6943dd82f75880cedc1e2622')
+}
+college>  db.student.find()
+[
+  {
+    _id: ObjectId('6943dca2f75880cedc1e2621'),
+    name: 'adam',
+    age: 19,
+    marks: 88
+  },
+  {
+    _id: ObjectId('6943dd82f75880cedc1e2622'),
+    name: 'bob',
+    city: 'Delhi',
+    marks: 75
+  }
+]
+college> db.student.insertMany([{name:'catlyn',marks:64,city:"Delhi"},{name:"donald",marks:58,city:"Mumbai"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6943de35f75880cedc1e2623'),
+    '1': ObjectId('6943de35f75880cedc1e2624')
+  }
+}
+college> db.student.find()
+[
+  {
+    _id: ObjectId('6943dca2f75880cedc1e2621'),
+    name: 'adam',
+    age: 19,
+    marks: 88
+  },
+  {
+    _id: ObjectId('6943dd82f75880cedc1e2622'),
+    name: 'bob',
+    city: 'Delhi',
+    marks: 75
+  },
+  {
+    _id: ObjectId('6943de35f75880cedc1e2623'),
+    name: 'catlyn',
+    marks: 64,
+    city: 'Delhi'
+  },
+  {
+    _id: ObjectId('6943de35f75880cedc1e2624'),
+    name: 'donald',
+    marks: 58,
+    city: 'Mumbai'
+  }
+]
+college> db.student.find({city:"Delhi"})
+[
+  {
+    _id: ObjectId('6943dd82f75880cedc1e2622'),
+    name: 'bob',
+    city: 'Delhi',
+    marks: 75
+  },
+  {
+    _id: ObjectId('6943de35f75880cedc1e2623'),
+    name: 'catlyn',
+    marks: 64,
+    city: 'Delhi'
+  }
+]
+college> db.student.findOne({city:"Delhi"})
+{
+  _id: ObjectId('6943dd82f75880cedc1e2622'),
+  name: 'bob',
+  city: 'Delhi',
+  marks: 75
+}
+college> db.student.findOne({name:"Adam"})
+null
+college> db.student.findOne({name:"adam"})
+{
+  _id: ObjectId('6943dca2f75880cedc1e2621'),
+  name: 'adam',
+  age: 19,
+  marks: 88
+}
+college> db.student.find({name:"adam"})
+[
+  {
+    _id: ObjectId('6943dca2f75880cedc1e2621'),
+    name: 'adam',
+    age: 19,
+    marks: 88
+  }
+]
+college> db.student.find({city:"Delhi",marks:75})
+[
+  {
+    _id: ObjectId('6943dd82f75880cedc1e2622'),
+    name: 'bob',
+    city: 'Delhi',
+    marks: 75
+  }
+]
+college> db.student.find({marks:{$gt:75}})
+[
+  {
+    _id: ObjectId('6943dca2f75880cedc1e2621'),
+    name: 'adam',
+    age: 19,
+    marks: 88
+  }
+]
+college> db.student.find({marks:{$gt:65}})
+[
+  {
+    _id: ObjectId('6943dca2f75880cedc1e2621'),
+    name: 'adam',
+    age: 19,
+    marks: 88
+  },
+  {
+    _id: ObjectId('6943dd82f75880cedc1e2622'),
+    name: 'bob',
+    city: 'Delhi',
+    marks: 75
+  }
+]
+college> db.student.find({marks:{$gte:75}})
+[
+  {
+    _id: ObjectId('6943dca2f75880cedc1e2621'),
+    name: 'adam',
+    age: 19,
+    marks: 88
+  },
+  {
+    _id: ObjectId('6943dd82f75880cedc1e2622'),
+    name: 'bob',
+    city: 'Delhi',
+    marks: 75
+  }
+]
+college> db.student.find({city:{$in:['Delhi','Mumbai']}})
+[
+  {
+    _id: ObjectId('6943dd82f75880cedc1e2622'),
+    name: 'bob',
+    city: 'Delhi',
+    marks: 75
+  },
+  {
+    _id: ObjectId('6943de35f75880cedc1e2623'),
+    name: 'catlyn',
+    marks: 64,
+    city: 'Delhi'
+  },
+  {
+    _id: ObjectId('6943de35f75880cedc1e2624'),
+    name: 'donald',
+    marks: 58,
+    city: 'Mumbai'
+  }
+]
+college>  db.student.find({$or:[{marks:{$gt:75}},{city:"Delhi"}]})
+[
+  {
+    _id: ObjectId('6943dca2f75880cedc1e2621'),
+    name: 'adam',
+    age: 19,
+    marks: 88
+  },
+  {
+    _id: ObjectId('6943dd82f75880cedc1e2622'),
+    name: 'bob',
+    city: 'Delhi',
+    marks: 75
+  },
+  {
+    _id: ObjectId('6943de35f75880cedc1e2623'),
+    name: 'catlyn',
+    marks: 64,
+    city: 'Delhi'
+  }
+]
+college> db.student.updateOne({name:"adam"},{$set:{marks:99}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+college> db.student.find({name:'adam'})
+[
+  {
+    _id: ObjectId('6943dca2f75880cedc1e2621'),
+    name: 'adam',
+    age: 19,
+    marks: 99
+  }
+]
+college> db.student.updateMany({city:"Delhi"},{$set:{city:"New Delhi"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+college> db.student.find()
+[
+  {
+    _id: ObjectId('6943dca2f75880cedc1e2621'),
+    name: 'adam',
+    age: 19,
+    marks: 99
+  },
+  {
+    _id: ObjectId('6943dd82f75880cedc1e2622'),
+    name: 'bob',
+    city: 'New Delhi',
+    marks: 75
+  },
+  {
+    _id: ObjectId('6943de35f75880cedc1e2623'),
+    name: 'catlyn',
+    marks: 64,
+    city: 'New Delhi'
+  },
+  {
+    _id: ObjectId('6943de35f75880cedc1e2624'),
+    name: 'donald',
+    marks: 58,
+    city: 'Mumbai'
+  }
+]
+college> db.student.replaceOne({name:'bob'},{name:"darpan",marks:94,state:"Haryana})
+Uncaught:
+SyntaxError: Unterminated string constant. (1:65)
+
+> 1 | db.student.replaceOne({name:'bob'},{name:"darpan",marks:94,state:"Haryana})
+    |                                                                  ^
+  2 |
+
+college>  db.student.replaceOne({name:'bob'},{name:"darpan",marks:94,state:"college>  db.student.replaceOne({name:'bob'},{name:"darpan",marks:94,state:"Haryana"})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+college> db.student.find()
+[
+  {
+    _id: ObjectId('6943dca2f75880cedc1e2621'),
+    name: 'adam',
+    age: 19,
+    marks: 99
+  },
+  {
+    _id: ObjectId('6943dd82f75880cedc1e2622'),
+    name: 'darpan',
+    marks: 94,
+    state: 'Haryana'
+  },
+  {
+    _id: ObjectId('6943de35f75880cedc1e2623'),
+    name: 'catlyn',
+    marks: 64,
+    city: 'New Delhi'
+  },
+  {
+    _id: ObjectId('6943de35f75880cedc1e2624'),
+    name: 'donald',
+    marks: 58,
+    city: 'Mumbai'
+  }
+]
+college> db.student.insertOne({name:"farah",performance:{marks:88,grade:"A"}})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6943fc0bf75880cedc1e2625')
+}
+college> db.student.find()
+[
+  {
+    _id: ObjectId('6943dca2f75880cedc1e2621'),
+    name: 'adam',
+    age: 19,
+    marks: 99
+  },
+  {
+    _id: ObjectId('6943dd82f75880cedc1e2622'),
+    name: 'darpan',
+    marks: 94,
+    state: 'Haryana'
+  },
+  {
+    _id: ObjectId('6943de35f75880cedc1e2623'),
+    name: 'catlyn',
+    marks: 64,
+    city: 'New Delhi'
+  },
+  {
+    _id: ObjectId('6943de35f75880cedc1e2624'),
+    name: 'donald',
+    marks: 58,
+    city: 'Mumbai'
+  },
+  {
+    _id: ObjectId('6943fc0bf75880cedc1e2625'),
+    name: 'farah',
+    performance: { marks: 88, grade: 'A' }
+  }
+]
+college> db.student.find({performance.marks:88})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:28)
+
+> 1 | db.student.find({performance.marks:88})
+    |                             ^
+  2 |
+
+college> db.student.find({"performance.marks":88})
+[
+  {
+    _id: ObjectId('6943fc0bf75880cedc1e2625'),
+    name: 'farah',
+    performance: { marks: 88, grade: 'A' }
+  }
+]
+college> db.student.find()
+[
+  {
+    _id: ObjectId('6943dca2f75880cedc1e2621'),
+    name: 'adam',
+    age: 19,
+    marks: 99
+  },
+  {
+    _id: ObjectId('6943dd82f75880cedc1e2622'),
+    name: 'darpan',
+    marks: 94,
+    state: 'Haryana'
+  },
+  {
+    _id: ObjectId('6943de35f75880cedc1e2623'),
+    name: 'catlyn',
+    marks: 64,
+    city: 'New Delhi'
+  },
+  {
+    _id: ObjectId('6943de35f75880cedc1e2624'),
+    name: 'donald',
+    marks: 58,
+    city: 'Mumbai'
+  },
+  {
+    _id: ObjectId('6943fc0bf75880cedc1e2625'),
+    name: 'farah',
+    performance: { marks: 88, grade: 'A' }
+  }
+]
+college> db.student.deleteOne({state:"Haryana"})
+{ acknowledged: true, deletedCount: 1 }
+college> db.student.find()
+[
+  {
+    _id: ObjectId('6943dca2f75880cedc1e2621'),
+    name: 'adam',
+    age: 19,
+    marks: 99
+  },
+  {
+    _id: ObjectId('6943de35f75880cedc1e2623'),
+    name: 'catlyn',
+    marks: 64,
+    city: 'New Delhi'
+  },
+  {
+    _id: ObjectId('6943de35f75880cedc1e2624'),
+    name: 'donald',
+    marks: 58,
+    city: 'Mumbai'
+  },
+  {
+    _id: ObjectId('6943fc0bf75880cedc1e2625'),
+    name: 'farah',
+    performance: { marks: 88, grade: 'A' }
+  }
+]
+college> db.student.deleteMany({marks: {$lt:75}})
+{ acknowledged: true, deletedCount: 2 }
+college> db.student.find()
+[
+  {
+    _id: ObjectId('6943dca2f75880cedc1e2621'),
+    name: 'adam',
+    age: 19,
+    marks: 99
+  },
+  {
+    _id: ObjectId('6943fc0bf75880cedc1e2625'),
+    name: 'farah',
+    performance: { marks: 88, grade: 'A' }
+  }
+]
+college> db.student.deleteMany({})
+{ acknowledged: true, deletedCount: 2 }
+college> db.student.find()
+
+college> db.dropDatabase()
+{ ok: 1, dropped: 'college' }
+college> show dbs
+admin   40.00 KiB
+config  88.00 KiB
+local   40.00 KiB
+testDB   8.00 KiB
+college>
