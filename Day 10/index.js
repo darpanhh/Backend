@@ -18,20 +18,85 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User",userSchema);
 
-User.insertMany([
-    {name:"Tony",email:"tony@gmail.com",age:50},
-    {name:"Bruce",email:"bruce@gmail.com",age:47},
-    {name:"Peter",email:"peter@gmail.com",age:30},
-]).then((data)=>{
-    console.log(data);
+// User.deleteOne({name:"Bruce"}).then((res)=>{
+//     console.log(res);
+// })
+// .catch(err=>{
+//     console.log(err);
+// })
+// User.deleteMany({age:48}).then((res)=>{
+//     console.log(res);
+// })
+// .catch(err=>{
+//     console.log(err);
+// })
+// User.findByIdAndDelete("69452efaca5623d5240b0998").then((res)=>{
+//     console.log(res);
+// })
+// .catch(err=>{
+//     console.log(err);
+// })
+User.findOneAndDelete({name:"Tony"}).then((res)=>{
+    console.log(res);
 })
-.catch((err)=>{
+.catch(err=>{
     console.log(err);
 })
 
+// User.insertMany([
+//     {name:"Tony",email:"tony@gmail.com",age:50},
+//     {name:"Bruce",email:"bruce@gmail.com",age:47},
+//     {name:"Peter",email:"peter@gmail.com",age:30},
+// ]).then((data)=>{
+//     console.log(data);
+// })
+// .catch((err)=>{
+//     console.log(err);
+// })
 
+//  User.find({})
+//  .then((res)=>{
+//     console.log(res);
+// })
+// .catch((err)=>{
+//     console.log(err);
+// })
 
-
+// User.find({age:{$gt:47}})
+//  .then((res)=>{
+//     console.log(res);
+// })
+// .catch((err)=>{
+//     console.log(err);
+// })
+// User.findById('69452cf2931f3780f241bd8d')
+//  .then((res)=>{
+//     console.log(res);
+// })
+// .catch((err)=>{
+//     console.log(err);
+// })
+// User.updateOne({name:'Adam'},{age:49})
+// .then((res)=>{
+//     console.log(res);
+// })
+// .catch((err)=>{
+//     console.log(err);
+// });
+// User.findOneAndUpdate({name:"Bruce"},{age:42},{new:true})
+// .then((res)=>{
+//     console.log(res);
+// })
+// .catch((err)=>{
+//     console.log(err);
+// });
+// User.findByIdAndUpdate('69452efaca5623d5240b0997',{age:64},{new:true})
+// .then((res)=>{
+//     console.log(res);
+// })
+// .catch((err)=>{
+//     console.log(err);
+// });
 
 // const user2 = new User(
 //     {
