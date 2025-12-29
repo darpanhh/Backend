@@ -85,7 +85,7 @@ app.get('/chats',async(req,res,next)=>{
     try{
         let chats = await Chat.find();
     // console.log(chats);
-    res.render('index.ejs',{chats})
+        res.render('index.ejs',{chats})
     }
     catch(err){
         next(err);
@@ -96,6 +96,9 @@ app.get('/chats',async(req,res,next)=>{
 app.get('/',(req,res)=>{
     res.send("Root is working");
 })
+
+
+
 //New Route
 app.get('/chats/new',(req,res)=>{
     // throw new ExpressError(404,"Page Not found")
@@ -124,38 +127,48 @@ app.post('/chats',async(req,res,next)=>{
     }
     
 })
+
+function asyncWrap(fn){
+    return function(req,res,next){
+        fn(req,res,next).catch((err)=>next(err));
+    }
+}
+
+
 //New-Show Route
-app.get('/chats/:id',async(req,res,next)=>{
-    try{
+app.get('/chats/:id',
+    asyncWrap(async(req,res,next)=>{
+    // try{
     let {id} = req.params;
     let chat = await Chat.findById(id);
     if(!chat){
         next(new ExpressError(500,"Chat not found baby"));
     }
     res.render('edit.ejs',{chat});
-    }
-    catch(err){
-        next(err);
-    }
+    // }
+    // catch(err){
+    //     next(err);
+    // }
     
 })
+);
 
 //Edit route
-app.get('/chats/:id/edit',async(req,res,next)=>{
-    try{
+app.get('/chats/:id/edit',asyncWrap(async(req,res,next)=>{
+    // try{
     let {id} = req.params;
     let chat = await Chat.findById(id);
     res.render('edit.ejs',{chat})
-    }
-    catch(err){
-        next(err);
-    }
+    // }
+    // catch(err){
+    //     next(err);
+    // }
 
     
-})
+}))
 //Update route
-app.put('/chats/:id',async(req,res)=>{
-    try{
+app.put('/chats/:id',asyncWrap(async(req,res)=>{
+    // try{
     let {id} = req.params;
     let {msg:newMsg} = req.body;
     console.log(newMsg )
@@ -166,27 +179,43 @@ app.put('/chats/:id',async(req,res)=>{
         })
     console.log(updatedChat);
     res.redirect('/chats');
-    }
-    catch(err){
-        next(err);
-    }
-})
+    // }
+    // catch(err){
+    //     next(err);
+    // }
+}))
 
 //Delete Route
 
-app.delete('/chats/:id',async(req,res)=>{
-    try{
+app.delete('/chats/:id',asyncWrap(async(req,res)=>{
+    // try{
     let {id} = req.params;
     console.log(id);
     let deletedChat = await Chat.findByIdAndDelete(id);
     console.log(deletedChat);
     res.redirect('/chats');
-    }
-    catch(err){
-        next(err);
-    }
+    // }
+    // catch(err){
+    //     next(err);
+    // }
 
+}))
+
+const handleValidationErr = (err)=>{
+    console.log("This was a validation error.Please follow rules");
+    console.dir(err.message);
+    return err;
+}
+
+app.use((err,req,res,next)=>{
+    console.log(err.name);
+    if(err.name==="ValidationError"){
+       err = handleValidationErr(err); 
+    }
+    next(err);
 })
+
+
 //Error Handling Middleware
 app.use((err,req,res,next)=>{
     let {status=500,message="Some Error Occured"} = err;
