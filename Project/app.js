@@ -5,6 +5,8 @@ const Listing = require('./models/listing.js');
 const path = require('path');
 const methodOverride = require("method-override");
 const ejsMate = require('ejs-mate');
+const wrapAsync = require('./utils/wrapAsync.js')
+const ExpressError = require('./utils/ExpressError.js')
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
@@ -51,14 +53,17 @@ app.get("/listings/:id", async (req, res) => {
 })
 
 //Create Route
-app.post("/listings",async(req,res)=>{
+app.post("/listings",wrapAsync(async(req,res,next)=>{
     // let {title,description,image,price,country,location} = req.body;
     // let listing = req.body.listing;
+    
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect('/listings');
+   
+    
     // console.log(newListing);
-})
+}))
 
 //Edit route
 app.get("/listings/:id/edit",async(req,res)=>{
@@ -97,7 +102,14 @@ app.delete('/listings/:id',async(req,res)=>{
 //     res.send('Successful testing');
 // });
 
+app.all('/*',(req,res,next)=>{
+    next(new ExpressError(404,"Page not found"));
+})
 
+app.use((err,req,res,next)=>{
+    let{statusCode,message} = err;
+    res.status(statusCode).send(message);
+})
 
 app.listen(8080, () => {
     console.log("Server is listening to the port 8080");
