@@ -28,10 +28,20 @@ const customerSchema = new Schema({
     ]
 })
 
+// customerSchema.pre('findOneAndDelete',async()=>{
+//     console.log("PRE MIDDLEWARE")
+// })
+customerSchema.post('findOneAndDelete',async(customer)=>{
+    if(customer.orders.length){
+        let res = await Order.deleteMany({_id:{$in:customer.orders}});
+        console.log(res);
+    }
+})
+
 const Order = mongoose.model("Order",orderSchema)
 const Customer = mongoose.model("Customer",customerSchema)
 
-const addCustomer = async()=>{
+// const addCustomer = async()=>{
     // let cust1 = new Customer({
     //     name:"rahul kumar"
     // });
@@ -42,16 +52,40 @@ const addCustomer = async()=>{
     // let result = await cust1.save();
     // console.log(result);
 
-}
+// }
 
 const findCustomer = async()=>{
     
     let result = await Customer.find({}).populate('orders');
     console.log(result[0])
 }
-findCustomer();
 
-addCustomer()
+const addCust = async()=>{
+    let newCust = new Customer({
+        name:'Karan Arjun'
+    })
+    let newOrder = new Order({
+        item:"Burger",
+        price:250
+    });
+    newCust.orders.push(newOrder);
+    await newOrder.save();
+    await newCust.save();
+    console.log("Added new customer");
+}
+
+
+const delCust = async()=>{
+    let data = await Customer.findByIdAndDelete("6974f8b95f51fe84c6e8ff57");
+    console.log(data);
+}
+
+// addCust();
+
+delCust();
+// findCustomer();
+
+// addCustomer()
 // const addOrders = async()=>{
 //     let res = await Order.insertMany([
 //         {item:"Samosa",price:12},
