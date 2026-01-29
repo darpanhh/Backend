@@ -24,7 +24,7 @@ const listingSchema = new Schema({
     ref: 'Review',
   }]
 });
-//As a middleware it delete the corresponding reviews of listing
+//As a middleware it delete the corresponding reviews of listing when listing is deleted
 listingSchema.post("findOneAndDelete",async(listing)=>{
   if(listing){
   await Review.deleteMany({_id: {$in: listing.reviews}})
