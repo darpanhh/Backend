@@ -22,7 +22,11 @@ const listingSchema = new Schema({
   reviews: [{
     type: Schema.Types.ObjectId,
     ref: 'Review',
-  }]
+  }],
+  owner:{
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  }
 });
 //As a middleware it delete the corresponding reviews of listing when listing is deleted
 listingSchema.post("findOneAndDelete",async(listing)=>{
